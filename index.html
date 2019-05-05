@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<head>
+    <html lang="en">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+
+
+</head>
+
+<body>
+    <style>
+        body,html {
+ background: url(bg.jpg)  no-repeat center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size:cover;
+}
+
+        .clock {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            color:white;
+            font-size: 60px;
+            font-family: 'Muli', sans-serif;
+
+        }
+        .title{
+        text-align: center;
+        font-family: 'Muli', sans-serif;
+        color: white;
+        padding-top: 85px;
+        }
+    </style>
+    
+    <h1 class="title">  Basic Javascript Clock </h1>
+
+    <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
+
+    <script>
+        function showTime() {
+            var date = new Date();
+            var h = date.getHours(); // 0 - 23
+            var m = date.getMinutes(); // 0 - 59
+            var s = date.getSeconds(); // 0 - 59
+            var session = "AM";
+
+            if (h == 0) {
+                h = 12;
+            }
+
+            if (h > 12) {
+                h = h - 12;
+                session = "PM";
+            }
+
+            h = (h < 10) ? "0" + h : h;
+            m = (m < 10) ? "0" + m : m;
+            s = (s < 10) ? "0" + s : s;
+
+            var time = h + ":" + m + ":" + s + " " + session;
+            document.getElementById("MyClockDisplay").innerText = time;
+            document.getElementById("MyClockDisplay").textContent = time;
+
+            setTimeout(showTime, 1000);
+
+        }
+
+        showTime();
+    </script>
+</body>
+
+</html>
